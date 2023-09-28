@@ -1,10 +1,7 @@
 import {
   Button,
   Card,
-  Code,
   Flex,
-  HStack,
-  Input,
   Stack,
   Text,
   useClipboard,
@@ -34,7 +31,7 @@ const CodeDisplay = ({
   width,
   inset,
 }: Props) => {
-  const { onCopy, value, setValue, hasCopied } = useClipboard('');
+  const { onCopy, setValue, hasCopied } = useClipboard('');
   const textToCopy = `height: ${height}px;
 width: ${width}px;
 border-radius: ${radius}px;
@@ -43,7 +40,7 @@ box-shadow:${inset ? ' inset' : ''} ${horizontal}px ${vertical}px ${blur}px ${sp
 -moz-box-shadow:${inset ? ' inset' : ''} ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};`;
   useEffect(() => {
     setValue(textToCopy);
-  }, [radius, horizontal, vertical, spread, color, blur, height, width, inset]);
+  }, [textToCopy]);
   return (
     <Card w={'full'} p={5}>
       <Flex w={'100%'} justifyContent={'space-between'}>
@@ -53,12 +50,6 @@ box-shadow:${inset ? ' inset' : ''} ${horizontal}px ${vertical}px ${blur}px ${sp
         <Button onClick={onCopy}>{hasCopied ? 'Copied!' : 'Copy'}</Button>
       </Flex>
       <Stack w={'full'}>
-        {/* <Code children={`Height: ${height}px`} />
-        <Code children={`Width: ${width}px`} />
-        <Code children={`border-radius: ${radius}px`} />
-        <Code
-          children={`box-shadow: ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color}`}
-        /> */}
         <pre>{textToCopy}</pre>
       </Stack>
     </Card>

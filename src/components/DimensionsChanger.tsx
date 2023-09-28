@@ -1,4 +1,4 @@
-import { HStack, Select, Text } from '@chakra-ui/react';
+import { HStack, Text } from '@chakra-ui/react';
 import SliderInput from './SliderInput';
 import { Dimensions } from '../App';
 

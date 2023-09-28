@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, Center } from '@chakra-ui/react';
+import { Card, Center } from '@chakra-ui/react';
 
 interface Props {
   radius: number;

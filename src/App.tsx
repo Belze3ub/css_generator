@@ -1,4 +1,4 @@
-import { Center, ChakraProvider, Container, Grid, GridItem } from '@chakra-ui/react';
+import { ChakraProvider, Container, Grid, GridItem } from '@chakra-ui/react';
 import { useState } from 'react';
 import Canva from './components/Canva';
 import PropertiesSection from './components/PropertiesSection';
@@ -20,7 +20,6 @@ const App = () => {
   const [spread, setSpread] = useState(0);
   const [blur, setBlur] = useState(24);
   const [inset, setInset] = useState(false);
-  const parentWidth = 300;
 
   // const [boxShadowOptions, setBoxShadowOptions] = useState({
   //   radius: 0,
@@ -44,7 +43,7 @@ const App = () => {
           gridTemplateColumns={`1fr 2fr`}
           h="80vh"
         >
-          <GridItem>Header</GridItem>
+          <GridItem></GridItem>
           <GridItem pl="2" area={'option'} p={5}>
               <OptionSection />
           </GridItem>
@@ -55,7 +54,6 @@ const App = () => {
                 color={color}
                 setColor={setColor}
                 spacing={5}
-                parentWidth={parentWidth}
                 blur={blur}
                 setBlur={setBlur}
                 horizontal={horizontal}
@@ -66,7 +64,6 @@ const App = () => {
                 setSpread={setSpread}
                 dimensions={dimensions}
                 setDimensions={setDimensions}
-                inset={inset}
                 setInset={setInset}
               />
           </GridItem>

@@ -1,19 +1,12 @@
-import RadiusChanger from './RadiusChanger';
-import DimensionsChanger from './DimensionsChanger';
-import ColorChanger from './ColorChanger';
 import {
   Card,
-  Center,
-  Container,
   Flex,
   HStack,
   Stack,
   Switch,
   Text,
 } from '@chakra-ui/react';
-import BlurChanger from './BlurChanger';
 import { Dimensions } from '../App';
-import SpreadChanger from './SpreadChanger';
 import GenericChanger from './GenericChanger';
 
 interface Props {
@@ -22,7 +15,6 @@ interface Props {
   color: string;
   setColor: (color: string) => void;
   spacing: number;
-  parentWidth: number;
   horizontal: number;
   setHorizontal: (horizontal: number) => void;
   vertical: number;
@@ -33,7 +25,6 @@ interface Props {
   setBlur: (blur: number) => void
   dimensions: Dimensions;
   setDimensions: (dimensions: Dimensions) => void
-  inset: boolean;
   setInset: (inset: boolean) => void
 }
 
@@ -43,7 +34,6 @@ const PropertiesSection = ({
   color,
   setColor,
   spacing,
-  parentWidth,
   blur,
   setBlur,
   dimensions,
@@ -54,7 +44,6 @@ const PropertiesSection = ({
   setHorizontal,
   vertical,
   setVertical,
-  inset,
   setInset,
 }: Props) => {
   return (
