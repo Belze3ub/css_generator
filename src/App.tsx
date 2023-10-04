@@ -1,8 +1,4 @@
-import {
-  Switch,
-  useMediaQuery,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Switch, useMediaQuery, useColorMode } from '@chakra-ui/react';
 import { useState } from 'react';
 import PropertiesSection from './components/PropertiesSection';
 import CodeDisplay from './components/CodeDisplay';
@@ -27,6 +23,14 @@ export interface textShadow {
   color: string;
 }
 
+export interface borderRadius {
+  unit: string;
+  topLeft: number;
+  topRight: number;
+  bottomRight: number;
+  bottomLeft: number;
+}
+
 const App = () => {
   const [boxShadowOptions, setBoxShadowOptions] = useState<boxShadow>({
     radius: 0,
@@ -46,15 +50,25 @@ const App = () => {
     color: '#42445A',
   });
 
+  const [borderRadiusOptions, setBorderRadiusOptions] = useState<borderRadius>({
+    unit: 'px',
+    topLeft: 20,
+    topRight: 20,
+    bottomRight: 20,
+    bottomLeft: 20,
+  });
+
   const [selectedOption, setSelectedOption] = useState('box-shadow');
 
   const [isLargerThanMobile] = useMediaQuery('(min-width: 768px)');
 
-  const {colorMode, toggleColorMode} = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
-      <div><Switch onChange={toggleColorMode} /></div>
+      <div>
+        <Switch onChange={toggleColorMode} />
+      </div>
       <div className="container">
         {isLargerThanMobile && (
           <div className="option">
@@ -67,6 +81,8 @@ const App = () => {
             setBoxShadowOptions={setBoxShadowOptions}
             textShadowOptions={textShadowOptions}
             setTextShadowOptions={setTextShadowOptions}
+            borderRadiusOptions={borderRadiusOptions}
+            setBorderRadiusOptions={setBorderRadiusOptions}
             spacing={5}
             selectedOption={selectedOption}
           />
@@ -75,6 +91,7 @@ const App = () => {
           <Canva
             boxShadowOptions={boxShadowOptions}
             textShadowOptions={textShadowOptions}
+            borderRadiusOptions={borderRadiusOptions}
             selectedOption={selectedOption}
           />
         </div>
@@ -82,6 +99,7 @@ const App = () => {
           <CodeDisplay
             boxShadowOptions={boxShadowOptions}
             textShadowOptions={textShadowOptions}
+            borderRadiusOptions={borderRadiusOptions}
             selectedOption={selectedOption}
           />
         </div>

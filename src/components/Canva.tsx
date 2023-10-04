@@ -1,15 +1,17 @@
 import { Card, Center } from '@chakra-ui/react';
-import { boxShadow, textShadow } from '../App';
+import { borderRadius, boxShadow, textShadow } from '../App';
 
 interface Props {
   boxShadowOptions: boxShadow;
   textShadowOptions: textShadow;
+  borderRadiusOptions: borderRadius;
   selectedOption: string;
 }
 
 const Canva = ({
   boxShadowOptions,
   textShadowOptions,
+  borderRadiusOptions,
   selectedOption,
 }: Props) => {
   const { radius, inset, horizontal, vertical, blur, spread, color } =
@@ -21,6 +23,7 @@ const Canva = ({
     blur: textBlur,
     color: textColor,
   } = textShadowOptions;
+  const { topLeft, topRight, bottomRight, bottomLeft, unit } = borderRadiusOptions;
   return (
     <Card w={'full'} h={'full'} className="card">
       <Center w={'full'} h={'full'}>
@@ -45,6 +48,16 @@ const Canva = ({
           >
             {text}
           </p>
+        ) : selectedOption === 'border-radius' ? (
+          <div
+            style={{
+              width: `200px`,
+              height: `200px`,
+              backgroundColor: '#CDDAFE',
+              border: '2px solid #5983FC',
+              borderRadius: `${topLeft}${unit} ${topRight}${unit} ${bottomRight}${unit} ${bottomLeft}${unit}`,
+            }}
+          ></div>
         ) : null}
       </Center>
     </Card>

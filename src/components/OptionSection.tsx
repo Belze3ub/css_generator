@@ -40,6 +40,7 @@ const OptionSection = ({setSelectedOption}: Props) => {
           colorScheme="blue"
           variant={'outline'}
           _hover={{ backgroundColor: 'blue.500', color: 'white' }}
+          onClick={() => setSelectedOption('border-radius')}
         >
           Border radius
         </Button>

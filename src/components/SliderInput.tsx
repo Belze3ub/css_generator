@@ -13,9 +13,10 @@ interface Props {
   color?: string,
   min?: number
   max?: number
+  unit?: string
 }
 
-const SliderInput = ({value, setValue, color = 'teal', min = -50, max = 50} : Props) => {
+const SliderInput = ({value, setValue, color = 'teal', min = -50, max = 50, unit = 'px'} : Props) => {
   const [showTooltip, setShowTooltip] = useState(false);
   return (
     <Slider
@@ -38,7 +39,7 @@ const SliderInput = ({value, setValue, color = 'teal', min = -50, max = 50} : Pr
         color="white"
         placement="top"
         isOpen={showTooltip}
-        label={`${value}px`}
+        label={`${value}${unit}`}
       >
         <SliderThumb />
       </Tooltip>
