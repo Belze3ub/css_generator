@@ -8,8 +8,9 @@ import {
   Switch,
   Text,
 } from '@chakra-ui/react';
-import { borderRadius, boxShadow, textShadow } from '../App';
+import { borderRadius, boxShadow, gradient, textShadow } from '../App';
 import GenericChanger from './GenericChanger';
+import { useState } from 'react';
 
 interface Props {
   selectedOption: string;
@@ -19,6 +20,8 @@ interface Props {
   setTextShadowOptions: (textShadowOption: textShadow) => void;
   borderRadiusOptions: borderRadius;
   setBorderRadiusOptions: (borderRadiusOptions: borderRadius) => void;
+  gradientOptions: gradient;
+  setGradientOptions: (gradientOptions: gradient) => void;
   spacing: number;
 }
 
@@ -30,8 +33,12 @@ const PropertiesSection = ({
   setTextShadowOptions,
   borderRadiusOptions,
   setBorderRadiusOptions,
+  gradientOptions,
+  setGradientOptions,
   spacing,
 }: Props) => {
+  const buttons = ['linear', 'radial']
+  const [activeButton, setActiveButton] = useState(buttons[0]);
   const getGenericChangersProps = (selectedOption: string) => {
     switch (selectedOption) {
       case 'box-shadow':
@@ -128,7 +135,7 @@ const PropertiesSection = ({
               }),
           },
         ];
-        case 'border-radius':
+      case 'border-radius':
         return [
           {
             label: 'Top left',
@@ -195,6 +202,33 @@ const PropertiesSection = ({
               }),
           },
         ];
+      case 'gradient':
+        return [
+          {
+            label: 'Color 1 Percentage',
+            value: gradientOptions.color1Percentage,
+            min: 0,
+            max: 100,
+            unit: '%',
+            setValue: (value: number) =>
+              setGradientOptions({
+                ...gradientOptions,
+                color1Percentage: value,
+              }),
+          },
+          {
+            label: 'Color 2 Percentage',
+            value: gradientOptions.color2Percentage,
+            min: 0,
+            max: 100,
+            unit: '%',
+            setValue: (value: number) =>
+              setGradientOptions({
+                ...gradientOptions,
+                color2Percentage: value,
+              }),
+          },
+        ];
       default:
         return [];
     }
@@ -205,7 +239,7 @@ const PropertiesSection = ({
   return (
     <Card h={'full'} w={'full'} p={5}>
       <Text fontSize={'2xl'} fontWeight={'bold'}>
-        {`CSS ${selectedOption}`}
+        {`CSS ${selectedOption[0].toUpperCase() + selectedOption.slice(1)}`}
       </Text>
       <Flex
         w={'full'}
@@ -326,6 +360,132 @@ const PropertiesSection = ({
                   spacing={spacing}
                 />
               ))}
+            </>
+          )}
+          {selectedOption === 'gradient' && (
+            <>
+              <Stack>
+                <HStack>
+                  {buttons.map((button) => (
+                    <button
+                      className={activeButton === button ? 'btn active' : 'btn'}
+                      key={button}
+                      onClick={() => {
+                        setGradientOptions({
+                          ...gradientOptions,
+                          mode: button,
+                        });
+                        setActiveButton(button);
+                      }}
+                    >
+                      {button[0].toUpperCase() + button.slice(1)}
+                    </button>
+                  ))}
+                  {/* <Button
+                    onClick={() =>
+                      setGradientOptions({
+                        ...gradientOptions,
+                        mode: 'linear',
+                      })
+                    }
+                  >
+                    Linear
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      setGradientOptions({
+                        ...gradientOptions,
+                        mode: 'radial',
+                      })
+                    }
+                  >
+                    Radial
+                  </Button> */}
+                </HStack>
+              </Stack>
+
+              <Stack>
+                <Flex justifyContent={'space-between'}>
+                  <Text>Color 1: </Text>
+                  <input
+                    className="colorChanger"
+                    type="color"
+                    value={gradientOptions.color1}
+                    onChange={(e) =>
+                      setGradientOptions({
+                        ...gradientOptions,
+                        color1: e.target.value,
+                      })
+                    }
+                  />
+                </Flex>
+                {gradientOptions.mode === 'linear' && (
+                  <GenericChanger
+                    label={'Degree'}
+                    value={gradientOptions.degree}
+                    min={0}
+                    max={180}
+                    unit={'°'}
+                    spacing={spacing}
+                    setValue={(value: number) =>
+                      setGradientOptions({
+                        ...gradientOptions,
+                        degree: value,
+                      })
+                    }
+                  />
+                )}
+                <GenericChanger
+                  label={'Color 1 Percentage'}
+                  value={gradientOptions.color1Percentage}
+                  min={0}
+                  max={100}
+                  unit={'%'}
+                  spacing={spacing}
+                  setValue={(value: number) =>
+                    setGradientOptions({
+                      ...gradientOptions,
+                      color1Percentage: value,
+                    })
+                  }
+                />
+                <Flex justifyContent={'space-between'}>
+                  <Text>Color 2: </Text>
+                  <input
+                    className="colorChanger"
+                    type="color"
+                    value={gradientOptions.color2}
+                    onChange={(e) =>
+                      setGradientOptions({
+                        ...gradientOptions,
+                        color2: e.target.value,
+                      })
+                    }
+                  />
+                </Flex>
+                <GenericChanger
+                  label={'Color 2 Percentage'}
+                  value={gradientOptions.color2Percentage}
+                  min={0}
+                  max={100}
+                  unit={'%'}
+                  spacing={spacing}
+                  setValue={(value: number) =>
+                    setGradientOptions({
+                      ...gradientOptions,
+                      color2Percentage: value,
+                    })
+                  }
+                />
+              </Stack>
+
+              {/* {genericChangersProps.map((props) => (
+                <GenericChanger
+                  key={props.label}
+                  {...props}
+                  spacing={spacing}
+                />
+              ))} */}
             </>
           )}
         </Stack>

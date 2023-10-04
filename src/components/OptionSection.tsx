@@ -1,87 +1,49 @@
-import { Button, Card, Flex } from '@chakra-ui/react';
+import { Card, Flex } from '@chakra-ui/react';
+import { useState } from 'react';
 
 interface Props {
   setSelectedOption: (option: string) => void;
 }
 
-const OptionSection = ({setSelectedOption}: Props) => {
+interface ButtonProps {
+  name: string;
+  option: string;
+}
+
+const OptionSection = ({ setSelectedOption }: Props) => {
+  const buttons = [
+    { name: 'Box shadow', option: 'box-shadow' },
+    { name: 'Text shadow', option: 'text-shadow' },
+    { name: 'Flexbox', option: 'flexbox' },
+    { name: 'Border radius', option: 'border-radius' },
+    { name: 'Gradient', option: 'gradient' },
+    { name: 'Transition', option: 'transition' },
+    { name: 'Transform', option: 'transform' },
+    { name: 'Background', option: 'background' },
+    { name: 'Button', option: 'button' },
+  ];
+  const [activeButton, setActiveButton] = useState<ButtonProps>(buttons[0]);
+
   return (
-    <Card w={'full'} h={'full'} p={5}>
-      <Flex
-        w={'full'}
-        h={'full'}
-        justifyContent={'space-around'}
-        alignItems={'center'}
-      >
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-          onClick={() => setSelectedOption('box-shadow')}
-        >
-          Box shadow
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-          onClick={() => setSelectedOption('text-shadow')}
-        >
-          Text shadow
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-        >
-          Flexbox
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-          onClick={() => setSelectedOption('border-radius')}
-        >
-          Border radius
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-        >
-          Gradient
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-        >
-          Transition
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-        >
-          Transform
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-        >
-          Background
-        </Button>
-        <Button
-          colorScheme="blue"
-          variant={'outline'}
-          _hover={{ backgroundColor: 'blue.500', color: 'white' }}
-        >
-          Button
-        </Button>
+    <Card w={'full'} h={'full'} p={5} overflow={'auto'}>
+      <Flex h={'full'} alignItems={'center'} justifyContent={'space-between'} gap={'1rem'}>
+        {buttons.map((button) => (
+          <button
+            key={button.name}
+            className={
+              activeButton.option === button.option ? 'btn active' : 'btn'
+            }
+            onClick={() => {
+              setSelectedOption(button.option);
+              setActiveButton(button);
+            }}
+          >
+            {button.name}
+          </button>
+        ))}
       </Flex>
     </Card>
   );
-}
+};
 
-export default OptionSection
+export default OptionSection;

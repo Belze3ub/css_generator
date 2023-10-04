@@ -31,6 +31,15 @@ export interface borderRadius {
   bottomLeft: number;
 }
 
+export interface gradient {
+  mode: string;
+  degree: number;
+  color1: string;
+  color1Percentage: number;
+  color2: string;
+  color2Percentage: number;
+}
+
 const App = () => {
   const [boxShadowOptions, setBoxShadowOptions] = useState<boxShadow>({
     radius: 0,
@@ -58,11 +67,20 @@ const App = () => {
     bottomLeft: 20,
   });
 
+  const [gradientOptions, setGradientOptions] = useState<gradient>({
+    mode: 'linear',
+    degree: 90,
+    color1: '#5983FC',
+    color1Percentage: 20,
+    color2: '#293556',
+    color2Percentage: 80,
+  });
+
   const [selectedOption, setSelectedOption] = useState('box-shadow');
 
   const [isLargerThanMobile] = useMediaQuery('(min-width: 768px)');
 
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { toggleColorMode } = useColorMode();
 
   return (
     <>
@@ -70,11 +88,11 @@ const App = () => {
         <Switch onChange={toggleColorMode} />
       </div>
       <div className="container">
-        {isLargerThanMobile && (
+        {/* {isLargerThanMobile && (
+        )} */}
           <div className="option">
             <OptionSection setSelectedOption={setSelectedOption} />
           </div>
-        )}
         <div className="properties">
           <PropertiesSection
             boxShadowOptions={boxShadowOptions}
@@ -83,6 +101,8 @@ const App = () => {
             setTextShadowOptions={setTextShadowOptions}
             borderRadiusOptions={borderRadiusOptions}
             setBorderRadiusOptions={setBorderRadiusOptions}
+            gradientOptions={gradientOptions}
+            setGradientOptions={setGradientOptions}
             spacing={5}
             selectedOption={selectedOption}
           />
@@ -92,6 +112,7 @@ const App = () => {
             boxShadowOptions={boxShadowOptions}
             textShadowOptions={textShadowOptions}
             borderRadiusOptions={borderRadiusOptions}
+            gradientOptions={gradientOptions}
             selectedOption={selectedOption}
           />
         </div>
@@ -100,6 +121,7 @@ const App = () => {
             boxShadowOptions={boxShadowOptions}
             textShadowOptions={textShadowOptions}
             borderRadiusOptions={borderRadiusOptions}
+            gradientOptions={gradientOptions}
             selectedOption={selectedOption}
           />
         </div>

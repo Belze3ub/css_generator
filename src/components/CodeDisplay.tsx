@@ -7,12 +7,13 @@ import {
   useClipboard,
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { borderRadius, boxShadow, textShadow } from '../App';
+import { borderRadius, boxShadow, gradient, textShadow } from '../App';
 
 interface Props {
   boxShadowOptions: boxShadow;
   textShadowOptions: textShadow;
   borderRadiusOptions: borderRadius;
+  gradientOptions: gradient;
   selectedOption: string;
 }
 
@@ -20,6 +21,7 @@ const CodeDisplay = ({
   boxShadowOptions,
   textShadowOptions,
   borderRadiusOptions,
+  gradientOptions,
   selectedOption,
 }: Props) => {
   const { radius, inset, horizontal, vertical, blur, spread, color } =
@@ -32,6 +34,8 @@ const CodeDisplay = ({
   } = textShadowOptions;
   const { topLeft, topRight, bottomRight, bottomLeft, unit } =
     borderRadiusOptions;
+  const { mode, degree, color1, color1Percentage, color2, color2Percentage } =
+    gradientOptions;
   const { onCopy, setValue, hasCopied } = useClipboard('');
   const boxShadowCode = `border-radius: ${radius}px;
 box-shadow:${
@@ -46,6 +50,9 @@ box-shadow:${
 
   const textShadowCode = `text-shadow: ${textHorizontal}px ${textVertical}px ${textBlur}px ${textColor}`;
   const borderRadiusCode = `border-radius: ${topLeft}${unit} ${topRight}${unit} ${bottomRight}${unit} ${bottomLeft}${unit}`;
+  const gradientCode = `background: ${mode}-gradient(${
+    mode === 'linear' ? `${degree}deg` : 'circle'
+  }, ${color1} ${color1Percentage}%, ${color2} ${color2Percentage}%)`;
   useEffect(() => {
     setValue(boxShadowCode);
   }, [boxShadowCode]);
@@ -55,6 +62,9 @@ box-shadow:${
   useEffect(() => {
     setValue(borderRadiusCode);
   }, [borderRadiusCode]);
+  useEffect(() => {
+    setValue(gradientCode);
+  }, [gradientCode]);
   return (
     <Card w={'full'} p={5}>
       <Flex w={'100%'} justifyContent={'space-between'}>
@@ -71,6 +81,8 @@ box-shadow:${
             ? textShadowCode
             : selectedOption === 'border-radius'
             ? borderRadiusCode
+            : selectedOption === 'gradient'
+            ? gradientCode
             : null}
         </pre>
       </Stack>

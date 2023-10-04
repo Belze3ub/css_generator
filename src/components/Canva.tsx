@@ -1,10 +1,11 @@
 import { Card, Center } from '@chakra-ui/react';
-import { borderRadius, boxShadow, textShadow } from '../App';
+import { borderRadius, boxShadow, gradient, textShadow } from '../App';
 
 interface Props {
   boxShadowOptions: boxShadow;
   textShadowOptions: textShadow;
   borderRadiusOptions: borderRadius;
+  gradientOptions: gradient;
   selectedOption: string;
 }
 
@@ -12,6 +13,7 @@ const Canva = ({
   boxShadowOptions,
   textShadowOptions,
   borderRadiusOptions,
+  gradientOptions,
   selectedOption,
 }: Props) => {
   const { radius, inset, horizontal, vertical, blur, spread, color } =
@@ -24,8 +26,9 @@ const Canva = ({
     color: textColor,
   } = textShadowOptions;
   const { topLeft, topRight, bottomRight, bottomLeft, unit } = borderRadiusOptions;
+  const { mode, degree, color1, color1Percentage, color2, color2Percentage } = gradientOptions;
   return (
-    <Card w={'full'} h={'full'} className="card">
+    <Card w={'full'} h={{ base: '20rem', lg: 'full' }} className="card" p={5}>
       <Center w={'full'} h={'full'}>
         {selectedOption === 'box-shadow' ? (
           <div
@@ -42,7 +45,7 @@ const Canva = ({
         ) : selectedOption === 'text-shadow' ? (
           <p
             style={{
-              fontSize: '24px',
+              fontSize: '34px',
               textShadow: `${textHorizontal}px ${textVertical}px ${textBlur}px ${textColor}`,
             }}
           >
@@ -56,6 +59,19 @@ const Canva = ({
               backgroundColor: '#CDDAFE',
               border: '2px solid #5983FC',
               borderRadius: `${topLeft}${unit} ${topRight}${unit} ${bottomRight}${unit} ${bottomLeft}${unit}`,
+            }}
+          ></div>
+        ) : selectedOption === 'gradient' ? (
+          <div
+            style={{
+              width: `100%`,
+              height: `100%`,
+              background: `${mode}-gradient(${
+                mode === 'linear' ? `${degree}deg` : 'circle'
+              }, ${color1} ${color1Percentage}%, ${color2} ${color2Percentage}%)`,
+              // backgroundColor: '#5983FC',
+              // background: 'linear-gradient(30deg, #5983FC, #ffffff)',
+              borderRadius: '5px',
             }}
           ></div>
         ) : null}

@@ -31,6 +31,25 @@ pre {
   overflow: auto;
 }
 
+.btn {
+  border: 1px solid #5983FC;
+  border-radius: .5rem;
+  padding: .5rem 1rem;
+  transition: all .3s;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background-color: #5983FC;
+  color: #FFFFFF;
+  transition: all .3s;
+}
+
+.active {
+  background-color: #5983FC;
+  color: #FFFFFF;
+}
+
 .container {
   padding: 2rem;
   gap: 2rem;
@@ -41,10 +60,6 @@ pre {
 
 .card {
   overflow: auto;
-}
-
-.card {
-  padding: 4rem 0;
 }
 
 @media (min-width: 768px) {
