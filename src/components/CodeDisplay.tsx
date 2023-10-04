@@ -7,40 +7,46 @@ import {
   useClipboard,
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
+import { boxShadow, textShadow } from '../App';
 
 interface Props {
-  radius: number;
-  color: string;
-  horizontal: number;
-  vertical: number;
-  spread: number;
-  blur: number;
-  height: number;
-  width: number;
-  inset: boolean
+  boxShadowOptions: boxShadow;
+  textShadowOptions: textShadow;
+  selectedOption: string;
 }
 
 const CodeDisplay = ({
-  radius,
-  horizontal,
-  vertical,
-  spread,
-  color,
-  blur,
-  height,
-  width,
-  inset,
+  boxShadowOptions,
+  textShadowOptions,
+  selectedOption,
 }: Props) => {
+  const { radius, inset, horizontal, vertical, blur, spread, color } =
+    boxShadowOptions;
+  const {
+    horizontal: textHorizontal,
+    vertical: textVertical,
+    blur: textBlur,
+    color: textColor,
+  } = textShadowOptions;
   const { onCopy, setValue, hasCopied } = useClipboard('');
-  const textToCopy = `height: ${height}px;
-width: ${width}px;
-border-radius: ${radius}px;
-box-shadow:${inset ? ' inset' : ''} ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};
--webkit-box-shadow:${inset ? ' inset' : ''} ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};
--moz-box-shadow:${inset ? ' inset' : ''} ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};`;
+  const boxShadowCode = `border-radius: ${radius}px;
+box-shadow:${
+    inset ? ' inset' : ''
+  } ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};
+-webkit-box-shadow:${
+    inset ? ' inset' : ''
+  } ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};
+-moz-box-shadow:${
+    inset ? ' inset' : ''
+  } ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};`;
+
+  const textShadowCode = `text-shadow: ${textHorizontal}px ${textVertical}px ${textBlur}px ${textColor}`;
   useEffect(() => {
-    setValue(textToCopy);
-  }, [textToCopy]);
+    setValue(boxShadowCode);
+  }, [boxShadowCode]);
+  useEffect(() => {
+    setValue(textShadowCode);
+  }, [textShadowCode]);
   return (
     <Card w={'full'} p={5}>
       <Flex w={'100%'} justifyContent={'space-between'}>
@@ -50,7 +56,13 @@ box-shadow:${inset ? ' inset' : ''} ${horizontal}px ${vertical}px ${blur}px ${sp
         <Button onClick={onCopy}>{hasCopied ? 'Copied!' : 'Copy'}</Button>
       </Flex>
       <Stack w={'full'}>
-        <pre>{textToCopy}</pre>
+        <pre>
+          {selectedOption === 'box-shadow'
+            ? boxShadowCode
+            : selectedOption === 'text-shadow'
+            ? textShadowCode
+            : null}
+        </pre>
       </Stack>
     </Card>
   );

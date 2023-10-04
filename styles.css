@@ -1,5 +1,5 @@
 body {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 input[type='color'] {
@@ -23,15 +23,44 @@ input[type='color']::-moz-color-swatch {
   border-radius: 5px;
 }
 
-.center {
-  height: 100vh;
-  display: grid;  
-  place-items: center;
-}
-
 pre {
-  background-color: #1F2024;
+  background-color: #1f2024;
   padding: 1rem;
   border-radius: 1rem;
   color: white;
+  overflow: auto;
+}
+
+.container {
+  padding: 2rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card {
+  overflow: auto;
+}
+
+.card {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 100px repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .option {
+    grid-column: span 2;
+  }
+
+  .code {
+    grid-column: 2;
+  }
 }

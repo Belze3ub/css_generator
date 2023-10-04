@@ -1,6 +1,10 @@
 import { Button, Card, Flex } from '@chakra-ui/react';
 
-const OptionSection = () => {
+interface Props {
+  setSelectedOption: (option: string) => void;
+}
+
+const OptionSection = ({setSelectedOption}: Props) => {
   return (
     <Card w={'full'} h={'full'} p={5}>
       <Flex
@@ -13,6 +17,7 @@ const OptionSection = () => {
           colorScheme="blue"
           variant={'outline'}
           _hover={{ backgroundColor: 'blue.500', color: 'white' }}
+          onClick={() => setSelectedOption('box-shadow')}
         >
           Box shadow
         </Button>
@@ -20,6 +25,7 @@ const OptionSection = () => {
           colorScheme="blue"
           variant={'outline'}
           _hover={{ backgroundColor: 'blue.500', color: 'white' }}
+          onClick={() => setSelectedOption('text-shadow')}
         >
           Text shadow
         </Button>

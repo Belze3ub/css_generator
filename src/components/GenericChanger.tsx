@@ -3,7 +3,7 @@ import SliderInput from './SliderInput';
 
 interface Props {
   value: number;
-  setValue: (horizontal: number) => void;
+  setValue: (value: number) => void;
   spacing: number;
   min?: number,
   max?: number,
@@ -14,7 +14,7 @@ const GenericChanger = ({ value, setValue, spacing, min, max, label }: Props) =>
   return (
     <HStack spacing={spacing}>
       <Flex w={'100%'} justifyContent={'space-between'}>
-        <Text>{label} </Text>
+        <Text marginRight={2}>{label} </Text>
         <SliderInput
           value={value}
           setValue={setValue}

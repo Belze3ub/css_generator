@@ -2,54 +2,138 @@ import {
   Card,
   Flex,
   HStack,
+  Input,
   Stack,
   Switch,
   Text,
 } from '@chakra-ui/react';
-import { Dimensions } from '../App';
+import { boxShadow, textShadow } from '../App';
 import GenericChanger from './GenericChanger';
 
 interface Props {
-  radius: number;
-  setRadius: (radius: number) => void;
-  color: string;
-  setColor: (color: string) => void;
+  selectedOption: string;
+  boxShadowOptions: boxShadow;
+  setBoxShadowOptions: (boxShadowOption: boxShadow) => void;
+  textShadowOptions: textShadow;
+  setTextShadowOptions: (textShadowOption: textShadow) => void;
   spacing: number;
-  horizontal: number;
-  setHorizontal: (horizontal: number) => void;
-  vertical: number;
-  setVertical: (vertical: number) => void;
-  spread: number;
-  setSpread: (spread: number) => void
-  blur: number
-  setBlur: (blur: number) => void
-  dimensions: Dimensions;
-  setDimensions: (dimensions: Dimensions) => void
-  setInset: (inset: boolean) => void
 }
 
 const PropertiesSection = ({
-  radius,
-  setRadius,
-  color,
-  setColor,
+  selectedOption,
+  boxShadowOptions,
+  setBoxShadowOptions,
+  textShadowOptions,
+  setTextShadowOptions,
   spacing,
-  blur,
-  setBlur,
-  dimensions,
-  setDimensions,
-  spread,
-  setSpread,
-  horizontal,
-  setHorizontal,
-  vertical,
-  setVertical,
-  setInset,
 }: Props) => {
+  const getGenericChangersProps = (selectedOption: string) => {
+    switch (selectedOption) {
+      case 'box-shadow':
+        return [
+          {
+            label: 'Radius',
+            value: boxShadowOptions.radius,
+            min: 0,
+            max: 100,
+            setValue: (value: number) =>
+              setBoxShadowOptions({
+                ...boxShadowOptions,
+                radius: value,
+              }),
+          },
+          {
+            label: 'Blur',
+            value: boxShadowOptions.blur,
+            min: 0,
+            max: 100,
+            setValue: (value: number) =>
+              setBoxShadowOptions({
+                ...boxShadowOptions,
+                blur: value,
+              }),
+          },
+          {
+            label: 'Spread',
+            value: boxShadowOptions.spread,
+            min: -50,
+            max: 50,
+            setValue: (value: number) =>
+              setBoxShadowOptions({
+                ...boxShadowOptions,
+                spread: value,
+              }),
+          },
+          {
+            label: 'Horizontal',
+            value: boxShadowOptions.horizontal,
+            min: -50,
+            max: 50,
+            setValue: (value: number) =>
+              setBoxShadowOptions({
+                ...boxShadowOptions,
+                horizontal: value,
+              }),
+          },
+          {
+            label: 'Vertical',
+            value: boxShadowOptions.vertical,
+            min: -50,
+            max: 50,
+            setValue: (value: number) =>
+              setBoxShadowOptions({
+                ...boxShadowOptions,
+                vertical: value,
+              }),
+          },
+        ];
+      case 'text-shadow':
+        return [
+          {
+            label: 'Blur',
+            value: textShadowOptions.blur,
+            min: 0,
+            max: 100,
+            setValue: (value: number) =>
+              setTextShadowOptions({
+                ...textShadowOptions,
+                blur: value,
+              }),
+          },
+          {
+            label: 'Horizontal',
+            value: textShadowOptions.horizontal,
+            min: -50,
+            max: 50,
+            setValue: (value: number) =>
+              setTextShadowOptions({
+                ...textShadowOptions,
+                horizontal: value,
+              }),
+          },
+          {
+            label: 'Vertical',
+            value: textShadowOptions.vertical,
+            min: -50,
+            max: 50,
+            setValue: (value: number) =>
+              setTextShadowOptions({
+                ...textShadowOptions,
+                vertical: value,
+              }),
+          },
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const genericChangersProps = getGenericChangersProps(selectedOption);
+
   return (
     <Card h={'full'} w={'full'} p={5}>
       <Text fontSize={'2xl'} fontWeight={'bold'}>
-        CSS box-shadow
+        {`CSS ${selectedOption}`}
       </Text>
       <Flex
         w={'full'}
@@ -58,80 +142,85 @@ const PropertiesSection = ({
         justifyContent={'center'}
       >
         <Stack w={'full'}>
-          <HStack>
-            <Flex w={'100%'} justifyContent={'space-between'}>
-              <Text>Shadow color: </Text>
-              <input
-                className="colorChanger"
-                type="color"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              />
-            </Flex>
-          </HStack>
-          <GenericChanger
-            label="Height"
-            value={dimensions.height}
-            setValue={(value) =>
-              setDimensions({ ...dimensions, height: value })
-            }
-            spacing={spacing}
-            min={0}
-            max={200}
-          />
-          <GenericChanger
-            label="Width"
-            value={dimensions.width}
-            setValue={(value) => setDimensions({ ...dimensions, width: value })}
-            spacing={spacing}
-            min={0}
-            max={200}
-          />
-          {/* <RadiusChanger
-            radius={radius}
-            setRadius={setRadius}
-            spacing={spacing}
-          /> */}
-          <GenericChanger
-            label="Radius"
-            value={radius}
-            setValue={setRadius}
-            spacing={spacing}
-            min={0}
-            max={100}
-          />
-          {/* <BlurChanger blur={blur} setBlur={setBlur} spacing={spacing} /> */}
-          <GenericChanger
-            label="Blur"
-            value={blur}
-            setValue={setBlur}
-            spacing={spacing}
-            min={0}
-          />
-          <GenericChanger
-            label="Spread"
-            value={spread}
-            setValue={setSpread}
-            spacing={spacing}
-          />
-          <GenericChanger
-            label="Horizontal"
-            value={horizontal}
-            setValue={setHorizontal}
-            spacing={spacing}
-          />
-          <GenericChanger
-            label="Vertical"
-            value={vertical}
-            setValue={setVertical}
-            spacing={spacing}
-          />
-        <HStack>
-          <Flex w={'100%'} justifyContent={'space-between'}>
-            <Text>Inset </Text>
-            <Switch onChange={(e) => setInset(e.target.checked)} />
-          </Flex>
-        </HStack>
+          {selectedOption === 'box-shadow' && (
+            <>
+              <HStack>
+                <Flex w={'100%'} justifyContent={'space-between'}>
+                  <Text>Shadow color: </Text>
+                  <input
+                    className="colorChanger"
+                    type="color"
+                    value={boxShadowOptions.color}
+                    onChange={(e) =>
+                      setBoxShadowOptions({
+                        ...boxShadowOptions,
+                        color: e.target.value,
+                      })
+                    }
+                  />
+                </Flex>
+              </HStack>
+              {genericChangersProps.map((props) => (
+                <GenericChanger
+                  key={props.label}
+                  {...props}
+                  spacing={spacing}
+                />
+              ))}
+              <HStack>
+                <Flex w={'100%'} justifyContent={'space-between'}>
+                  <Text>Inset </Text>
+                  <Switch
+                    onChange={(e) =>
+                      setBoxShadowOptions({
+                        ...boxShadowOptions,
+                        inset: e.target.checked,
+                      })
+                    }
+                  />
+                </Flex>
+              </HStack>
+            </>
+          )}
+          {selectedOption === 'text-shadow' && (
+            <>
+              <Stack>
+                <HStack>
+                  <Flex w={'100%'} justifyContent={'space-between'}>
+                    <Text>Shadow color: </Text>
+                    <input
+                      className="colorChanger"
+                      type="color"
+                      value={textShadowOptions.color}
+                      onChange={(e) =>
+                        setTextShadowOptions({
+                          ...textShadowOptions,
+                          color: e.target.value,
+                        })
+                      }
+                    />
+                  </Flex>
+                </HStack>
+                <Input
+                  placeholder="Text"
+                  value={textShadowOptions.text}
+                  onChange={(e) =>
+                    setTextShadowOptions({
+                      ...textShadowOptions,
+                      text: e.target.value,
+                    })
+                  }
+                />
+              </Stack>
+              {genericChangersProps.map((props) => (
+                <GenericChanger
+                  key={props.label}
+                  {...props}
+                  spacing={spacing}
+                />
+              ))}
+            </>
+          )}
         </Stack>
       </Flex>
     </Card>
