@@ -16,13 +16,13 @@ interface Props {
   unit?: string
 }
 
-const SliderInput = ({value, setValue, color = 'teal', min = -50, max = 50, unit = 'px'} : Props) => {
+const SliderInput = ({value, setValue, color = 'teal', min = -50, max = 50, unit = 'px'} : Props) => {  
   const [showTooltip, setShowTooltip] = useState(false);
   return (
     <Slider
       id="slider"
-      defaultValue={value}
-    min={min}
+      value={value}
+      min={min}
       max={max}
       colorScheme={color}
       onChange={(e: number) => setValue(e)}

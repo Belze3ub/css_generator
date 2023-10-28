@@ -1,5 +1,21 @@
 body {
   background-color: #f5f5f5;
+  padding: 1rem;
+}
+
+*::-webkit-scrollbar {
+  height: .5rem;
+  background-color: transparent;
+  border-radius: 100rem;
+}
+
+*::-webkit-scrollbar-track {
+    margin-inline: .5rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #626767;
+  border-radius: 100rem;
 }
 
 input[type='color'] {
@@ -32,25 +48,25 @@ pre {
 }
 
 .btn {
-  border: 1px solid #5983FC;
-  border-radius: .5rem;
-  padding: .5rem 1rem;
-  transition: all .3s;
+  border: 1px solid #5983fc;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s;
   white-space: nowrap;
 }
 
 .btn:hover {
-  background-color: #5983FC;
-  color: #FFFFFF;
-  transition: all .3s;
+  background-color: #5983fc;
+  color: #ffffff;
+  transition: all 0.3s;
 }
 
 .active {
-  background-color: #5983FC;
-  color: #FFFFFF;
+  background-color: #5983fc;
+  color: #ffffff;
 }
 
-.container {
+/* .app-container {
   padding: 2rem;
   gap: 2rem;
   display: flex;
@@ -63,7 +79,7 @@ pre {
 }
 
 @media (min-width: 768px) {
-  .container {
+  .app-container {
     padding: 2rem;
     min-height: 100vh;
     display: grid;
@@ -71,11 +87,24 @@ pre {
     grid-template-columns: 1fr 2fr;
   }
 
-  .option {
+  .options {
     grid-column: span 2;
+  }
+
+  .properties {
+    grid-column: 1;
   }
 
   .code {
     grid-column: 2;
   }
+} */
+
+.flex {
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.btn {
+  flex: 1;
 }

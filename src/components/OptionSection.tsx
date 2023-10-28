@@ -1,5 +1,6 @@
 import { Card, Flex } from '@chakra-ui/react';
 import { useState } from 'react';
+import {Link, Outlet} from 'react-router-dom'
 
 interface Props {
   setSelectedOption: (option: string) => void;
@@ -25,24 +26,34 @@ const OptionSection = ({ setSelectedOption }: Props) => {
   const [activeButton, setActiveButton] = useState<ButtonProps>(buttons[0]);
 
   return (
-    <Card w={'full'} h={'full'} p={5} overflow={'auto'}>
-      <Flex h={'full'} alignItems={'center'} justifyContent={'space-between'} gap={'1rem'}>
-        {buttons.map((button) => (
-          <button
-            key={button.name}
-            className={
-              activeButton.option === button.option ? 'btn active' : 'btn'
-            }
-            onClick={() => {
-              setSelectedOption(button.option);
-              setActiveButton(button);
-            }}
+    <>
+        <Card w={'full'} h={'full'} p={5} overflow={'auto'} className='options'>
+          <Flex
+            h={'full'}
+            alignItems={'center'}
+            justifyContent={'space-between'}
+            gap={'1rem'}
           >
-            {button.name}
-          </button>
-        ))}
-      </Flex>
-    </Card>
+            {buttons.map((button) => (
+              <Link key={button.name} to={button.option}>
+                <button
+                  key={button.name}
+                  className={
+                    activeButton.option === button.option ? 'btn active' : 'btn'
+                  }
+                  onClick={() => {
+                    setSelectedOption(button.option);
+                    setActiveButton(button);
+                  }}
+                >
+                  {button.name}
+                </button>
+              </Link>
+            ))}
+          </Flex>
+        </Card>
+      <Outlet />
+    </>
   );
 };
 

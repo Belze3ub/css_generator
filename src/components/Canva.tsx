@@ -1,5 +1,5 @@
 import { Card, Center } from '@chakra-ui/react';
-import { borderRadius, boxShadow, gradient, textShadow } from '../App';
+import { borderRadius, boxShadow, gradient, textShadow } from './Display';
 
 interface Props {
   boxShadowOptions: boxShadow;
@@ -28,7 +28,7 @@ const Canva = ({
   const { topLeft, topRight, bottomRight, bottomLeft, unit } = borderRadiusOptions;
   const { mode, degree, color1, color1Percentage, color2, color2Percentage } = gradientOptions;
   return (
-    <Card w={'full'} h={{ base: '20rem', lg: 'full' }} className="card" p={5}>
+    <Card w={'full'} h={'full'} className="card" p={5}>
       <Center w={'full'} h={'full'}>
         {selectedOption === 'box-shadow' ? (
           <div

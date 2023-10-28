@@ -4,16 +4,15 @@ import SliderInput from './SliderInput';
 interface Props {
   value: number;
   setValue: (value: number) => void;
-  spacing: number;
   min?: number,
   max?: number,
   label: string,
   unit?: string,
 }
 
-const GenericChanger = ({ value, setValue, spacing, min, max, label, unit }: Props) => {
+const GenericChanger = ({ value, setValue, min, max, label, unit }: Props) => {  
   return (
-    <HStack spacing={spacing}>
+    <HStack spacing={10}>
       <Flex w={'100%'} justifyContent={'space-between'}>
         <Text marginRight={2}>{label} </Text>
         <SliderInput

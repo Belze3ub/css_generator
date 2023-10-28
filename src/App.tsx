@@ -1,12 +1,25 @@
 import { Switch, useMediaQuery, useColorMode } from '@chakra-ui/react';
 import { useState } from 'react';
-import PropertiesSection from './components/PropertiesSection';
-import CodeDisplay from './components/CodeDisplay';
-import OptionSection from './components/OptionSection';
-import Canva from './components/Canva';
+import { Route, Routes } from 'react-router-dom';
+import SectionContainer from './components/SectionContainer/SectionContainer';
+import BoxShadowProperties from './components/BoxShadow/BoxShadowProperties';
+import BoxShadowCanva from './components/BoxShadow/BoxShadowCanva';
+import BoxShadowCode from './components/BoxShadow/BoxShadowCode';
+import Navigation from './components/Navigation/Navigation';
+import TextShadowProperties from './components/TextShadow/TextShadowProperties';
+import TextShadowCanva from './components/TextShadow/TextShadowCanva';
+import TextShadowCode from './components/TextShadow/TextShadowCode';
+import BorderRadiusProperties from './components/BorderRadius/BorderRadiusProperties';
+import BorderRadiusCanva from './components/BorderRadius/BorderRadiusCanva';
+import BorderRadiusCode from './components/BorderRadius/BorderRadiusCode';
+import GradientProperties from './components/Gradient/GradientProperties';
+import GradientCanva from './components/Gradient/GradientCanva';
+import GradientCode from './components/Gradient/GradientCode';
+import FlexboxProperties from './components/Flexbox/FlexboxProperties';
+import FlexboxCanva from './components/Flexbox/FlexboxCanva';
+import FlexboxCode from './components/Flexbox/FlexboxCode';
 
-export interface boxShadow {
-  radius: number;
+export interface BoxShadow {
   color: string;
   horizontal: number;
   vertical: number;
@@ -15,7 +28,7 @@ export interface boxShadow {
   inset: boolean;
 }
 
-export interface textShadow {
+export interface TextShadow {
   text: string;
   horizontal: number;
   vertical: number;
@@ -23,7 +36,7 @@ export interface textShadow {
   color: string;
 }
 
-export interface borderRadius {
+export interface BorderRadius {
   unit: string;
   topLeft: number;
   topRight: number;
@@ -31,18 +44,40 @@ export interface borderRadius {
   bottomLeft: number;
 }
 
-export interface gradient {
+export interface Gradient {
   mode: string;
   degree: number;
-  color1: string;
-  color1Percentage: number;
-  color2: string;
-  color2Percentage: number;
+  colors: string[];
+  colorPercentages: number[];
+}
+
+export type FlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
+export type FlexWrap = 'wrap' | 'nowrap' | 'wrap-reverse';
+export type JustifyContent = 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around';
+export type AlignItems = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+export type AlignContent = 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'stretch';
+
+export interface Flexbox {
+  display: string;
+  flexDirection: FlexDirection;
+  flexWrap: FlexWrap;
+  justifyContent: JustifyContent;
+  alignItems: AlignItems;
+  alignContent: AlignContent;
+  flexItems: number[];
 }
 
 const App = () => {
-  const [boxShadowOptions, setBoxShadowOptions] = useState<boxShadow>({
-    radius: 0,
+  const [boxShadowOptions, setBoxShadowOptions] = useState<BoxShadow>({
     color: '#42445A',
     horizontal: 8,
     vertical: 8,
@@ -51,7 +86,7 @@ const App = () => {
     inset: false,
   });
 
-  const [textShadowOptions, setTextShadowOptions] = useState<textShadow>({
+  const [textShadowOptions, setTextShadowOptions] = useState<TextShadow>({
     text: 'Text Shadow',
     horizontal: 4,
     vertical: 4,
@@ -59,7 +94,7 @@ const App = () => {
     color: '#42445A',
   });
 
-  const [borderRadiusOptions, setBorderRadiusOptions] = useState<borderRadius>({
+  const [borderRadiusOptions, setBorderRadiusOptions] = useState<BorderRadius>({
     unit: 'px',
     topLeft: 20,
     topRight: 20,
@@ -67,65 +102,131 @@ const App = () => {
     bottomLeft: 20,
   });
 
-  const [gradientOptions, setGradientOptions] = useState<gradient>({
+  const [gradientOptions, setGradientOptions] = useState<Gradient>({
     mode: 'linear',
     degree: 90,
-    color1: '#5983FC',
-    color1Percentage: 20,
-    color2: '#293556',
-    color2Percentage: 80,
+    colors: ['#5983FC', '#293556'],
+    colorPercentages: [0, 100],
   });
 
-  const [selectedOption, setSelectedOption] = useState('box-shadow');
-
-  const [isLargerThanMobile] = useMediaQuery('(min-width: 768px)');
+  const [flexboxOptions, setFlexboxOptions] = useState<Flexbox>({
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    alignContent: 'flex-start',
+    flexItems: [1, 2, 3]
+  });
 
   const { toggleColorMode } = useColorMode();
 
   return (
     <>
-      <div>
-        <Switch onChange={toggleColorMode} />
-      </div>
-      <div className="container">
-        {/* {isLargerThanMobile && (
-        )} */}
-          <div className="option">
-            <OptionSection setSelectedOption={setSelectedOption} />
-          </div>
-        <div className="properties">
-          <PropertiesSection
-            boxShadowOptions={boxShadowOptions}
-            setBoxShadowOptions={setBoxShadowOptions}
-            textShadowOptions={textShadowOptions}
-            setTextShadowOptions={setTextShadowOptions}
-            borderRadiusOptions={borderRadiusOptions}
-            setBorderRadiusOptions={setBorderRadiusOptions}
-            gradientOptions={gradientOptions}
-            setGradientOptions={setGradientOptions}
-            spacing={5}
-            selectedOption={selectedOption}
-          />
+      {
+        <div>
+          Color Mode: <Switch onChange={toggleColorMode} />
         </div>
-        <div className="canva">
-          <Canva
-            boxShadowOptions={boxShadowOptions}
-            textShadowOptions={textShadowOptions}
-            borderRadiusOptions={borderRadiusOptions}
-            gradientOptions={gradientOptions}
-            selectedOption={selectedOption}
+      }
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route
+            index
+            element={
+              <SectionContainer
+                propertiesComponent={
+                  <BoxShadowProperties
+                    boxShadowOptions={boxShadowOptions}
+                    setBoxShadowOptions={setBoxShadowOptions}
+                  />
+                }
+                canvaComponent={
+                  <BoxShadowCanva boxShadowOptions={boxShadowOptions} />
+                }
+                codeComponent={
+                  <BoxShadowCode boxShadowOptions={boxShadowOptions} />
+                }
+              />
+            }
           />
-        </div>
-        <div className="code">
-          <CodeDisplay
-            boxShadowOptions={boxShadowOptions}
-            textShadowOptions={textShadowOptions}
-            borderRadiusOptions={borderRadiusOptions}
-            gradientOptions={gradientOptions}
-            selectedOption={selectedOption}
+          <Route
+            path="/text-shadow"
+            element={
+              <SectionContainer
+                propertiesComponent={
+                  <TextShadowProperties
+                    textShadowOptions={textShadowOptions}
+                    setTextShadowOptions={setTextShadowOptions}
+                  />
+                }
+                canvaComponent={
+                  <TextShadowCanva textShadowOptions={textShadowOptions} />
+                }
+                codeComponent={
+                  <TextShadowCode textShadowOptions={textShadowOptions} />
+                }
+              />
+            }
           />
-        </div>
-      </div>
+          <Route
+            path="/border-radius"
+            element={
+              <SectionContainer
+                propertiesComponent={
+                  <BorderRadiusProperties
+                    borderRadiusOptions={borderRadiusOptions}
+                    setBorderRadiusOptions={setBorderRadiusOptions}
+                  />
+                }
+                canvaComponent={
+                  <BorderRadiusCanva
+                    borderRadiusOptions={borderRadiusOptions}
+                  />
+                }
+                codeComponent={
+                  <BorderRadiusCode borderRadiusOptions={borderRadiusOptions} />
+                }
+              />
+            }
+          />
+          <Route
+            path="/gradient"
+            element={
+              <SectionContainer
+                propertiesComponent={
+                  <GradientProperties
+                    gradientOptions={gradientOptions}
+                    setGradientOptions={setGradientOptions}
+                  />
+                }
+                canvaComponent={
+                  <GradientCanva gradientOptions={gradientOptions} />
+                }
+                codeComponent={
+                  <GradientCode gradientOptions={gradientOptions} />
+                }
+              />
+            }
+          />
+          <Route
+            path="/flexbox"
+            element={
+              <SectionContainer
+                propertiesComponent={
+                  <FlexboxProperties
+                    flexboxOptions={flexboxOptions}
+                    setFlexboxOptions={setFlexboxOptions}
+                  />
+                }
+                canvaComponent={
+                  <FlexboxCanva flexboxOptions={flexboxOptions} />
+                }
+                codeComponent={<FlexboxCode flexboxOptions={flexboxOptions} />}
+              />
+            }
+          />
+        </Route>
+      </Routes>
     </>
   );
 };

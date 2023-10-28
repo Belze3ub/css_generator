@@ -7,13 +7,13 @@ import {
   useClipboard,
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { borderRadius, boxShadow, gradient, textShadow } from '../App';
+import { BorderRadius, BoxShadow, Gradient, textShadow } from '../App';
 
 interface Props {
-  boxShadowOptions: boxShadow;
+  boxShadowOptions: BoxShadow;
   textShadowOptions: textShadow;
-  borderRadiusOptions: borderRadius;
-  gradientOptions: gradient;
+  borderRadiusOptions: BorderRadius;
+  gradientOptions: Gradient;
   selectedOption: string;
 }
 

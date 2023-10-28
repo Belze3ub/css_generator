@@ -8,7 +8,7 @@ import {
   Switch,
   Text,
 } from '@chakra-ui/react';
-import { borderRadius, boxShadow, gradient, textShadow } from '../App';
+import { borderRadius, boxShadow, gradient, textShadow } from './Display';
 import GenericChanger from './GenericChanger';
 import { useState } from 'react';
 
@@ -237,7 +237,7 @@ const PropertiesSection = ({
   const genericChangersProps = getGenericChangersProps(selectedOption);
 
   return (
-    <Card h={'full'} w={'full'} p={5}>
+    <Card h={'20rem'} w={'full'} p={5}>
       <Text fontSize={'2xl'} fontWeight={'bold'}>
         {`CSS ${selectedOption[0].toUpperCase() + selectedOption.slice(1)}`}
       </Text>
@@ -318,7 +318,7 @@ const PropertiesSection = ({
                   }
                 />
               </Stack>
-              {genericChangersProps.map((props) => (
+              {textShadowProps.map((props) => (
                 <GenericChanger
                   key={props.label}
                   {...props}
