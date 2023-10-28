@@ -1,0 +1,13 @@
+.flex-item {
+  width: 4rem;
+  height: 4rem;
+  background: #5983fc;
+  border-radius: .5rem;
+  color: white;
+  display: grid;
+  place-content: center;
+
+  &.middle {
+    height: 6rem;
+  }
+}
