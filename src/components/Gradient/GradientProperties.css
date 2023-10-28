@@ -1,0 +1,13 @@
+.addRemove {
+  width: 100%;
+
+  &.disabled {
+    border: 1px solid rgb(206, 206, 206);
+    color: rgb(206, 206, 206);
+    
+    &:hover {
+      background-color: transparent;
+      cursor: not-allowed;
+    }
+  }
+}
