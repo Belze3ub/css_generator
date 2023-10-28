@@ -28,11 +28,8 @@ const FlexboxCanva = ({ flexboxOptions }: Props) => {
           alignContent: `${alignContent}`,
         }}
       >
-        {/* <div className="flex-item">1</div>
-        <div className="flex-item middle">2</div>
-        <div className="flex-item">3</div> */}
         {flexItems.map((item) => (
-          <div className={`flex-item${item === 2 ? ' middle' : ''}`}>{item}</div>
+          <div key={item} className={`flex-item${item === 2 ? ' middle' : ''}`}>{item}</div>
         ))}
       </div>
     </Center>

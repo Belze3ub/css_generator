@@ -158,7 +158,7 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
               <option value={'stretch'}>stretch</option>
             </Select>
           </Flex>
-          <Flex gap={'.5rem'}>
+          <Flex className='flex'>
             <button className="btn addRemove" onClick={addFlexItem}>
               Add Element
             </button>
