@@ -1,6 +1,5 @@
-import { Button, Flex, Stack, useClipboard, Text } from '@chakra-ui/react';
-import { Transform } from "../../App";
-import { useEffect } from "react";
+import { Transform } from '../../App';
+import CodeDisplay from '../CodeDisplay';
 
 interface Props {
   transformOptions: Transform;
@@ -9,7 +8,6 @@ interface Props {
 const TransformCode = ({ transformOptions }: Props) => {
   const { scale, rotate, translateX, translateY, skewX, skewY } =
     transformOptions;
-  const { onCopy, setValue, hasCopied } = useClipboard('');
 
   const generateTransformCode = () => {
     const transformValues = [];
@@ -32,28 +30,9 @@ const TransformCode = ({ transformOptions }: Props) => {
       : 'transform: none';
   };
 
-  // Usage in your component
   const transformCode = generateTransformCode();
 
-
-
-  useEffect(() => {
-    setValue(transformCode);
-  }, [transformCode]);
-
-  return (
-    <>
-      <Flex w={'100%'} justifyContent={'space-between'}>
-        <Text fontSize={'2xl'} fontWeight={'bold'} mb={4}>
-          CSS Code:
-        </Text>
-        <Button onClick={onCopy}>{hasCopied ? 'Copied!' : 'Copy'}</Button>
-      </Flex>
-      <Stack w={'full'}>
-        <pre>{transformCode}</pre>
-      </Stack>
-    </>
-  );
+  return <CodeDisplay code={transformCode} />;
 };
 
 export default TransformCode;

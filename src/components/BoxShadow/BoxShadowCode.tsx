@@ -1,6 +1,5 @@
-import { Button, Flex, Stack, useClipboard, Text } from '@chakra-ui/react';
 import { BoxShadow } from '../../App';
-import { useEffect } from 'react';
+import CodeDisplay from '../CodeDisplay';
 
 interface Props {
   boxShadowOptions: BoxShadow;
@@ -9,7 +8,6 @@ interface Props {
 const BoxShadowCode = ({ boxShadowOptions }: Props) => {
   const { inset, horizontal, vertical, blur, spread, color } = boxShadowOptions;
 
-  const { onCopy, setValue, hasCopied } = useClipboard('');
   const boxShadowCode = `box-shadow:${
     inset ? ' inset' : ''
   } ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};
@@ -20,23 +18,7 @@ const BoxShadowCode = ({ boxShadowOptions }: Props) => {
     inset ? ' inset' : ''
   } ${horizontal}px ${vertical}px ${blur}px ${spread}px ${color};`;
 
-  useEffect(() => {
-    setValue(boxShadowCode);
-  }, [boxShadowCode]);
-
-  return (
-    <>
-      <Flex w={'100%'} justifyContent={'space-between'}>
-        <Text fontSize={'2xl'} fontWeight={'bold'} mb={4}>
-          CSS Code:
-        </Text>
-        <Button onClick={onCopy}>{hasCopied ? 'Copied!' : 'Copy'}</Button>
-      </Flex>
-      <Stack w={'full'}>
-        <pre>{boxShadowCode}</pre>
-      </Stack>
-    </>
-  );
+  return <CodeDisplay code={boxShadowCode} />;
 };
 
 export default BoxShadowCode;
