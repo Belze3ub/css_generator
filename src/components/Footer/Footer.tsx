@@ -9,6 +9,7 @@ const Footer = () => {
       color={'white'}
       display={'grid'}
       placeItems={'center'}
+      textAlign={'center'}
       p={'1rem'}
       className="footer"
     >
