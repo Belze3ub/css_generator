@@ -20,7 +20,7 @@ const GradientProperties = ({ gradientOptions, setGradientOptions }: Props) => {
 
   const removeColor = () => {
     return gradientOptions.colors.filter(
-      (color, index) => index !== gradientOptions.colors.length - 1
+      (_, index) => index !== gradientOptions.colors.length - 1
     );
   };
 
@@ -85,7 +85,7 @@ const GradientProperties = ({ gradientOptions, setGradientOptions }: Props) => {
                 }
               />
             )}
-            {gradientOptions.colors.map((color, index) => (
+            {gradientOptions.colors.map((_, index) => (
               <div key={index}>
                 <Flex justifyContent={'space-between'}>
                   <Text>{`Color ${index + 1}: `}</Text>

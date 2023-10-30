@@ -21,7 +21,7 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
 
   const removeFlexItem = () => {
     const newFlexItems = flexboxOptions.flexItems.filter(
-      (item, index) => index !== flexboxOptions.flexItems.length - 1
+      (_, index) => index !== flexboxOptions.flexItems.length - 1
     );
     const newFlexboxOptions = {
       ...flexboxOptions,
