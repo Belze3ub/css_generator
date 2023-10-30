@@ -1,4 +1,3 @@
-import { Center } from '@chakra-ui/react';
 import { Gradient } from '../../App';
 
 interface Props {
@@ -11,18 +10,17 @@ const GradientCanva = ({ gradientOptions }: Props) => {
     .map((color, index) => `${color} ${colorPercentages[index]}%`)
     .join(', ');
   return (
-    <Center h={'full'}>
-      <div
-        style={{
-          width: `100%`,
-          height: `100%`,
-          background: `${mode}-gradient(${
-            mode === 'linear' ? `${degree}deg` : 'circle'
-          }, ${gradientColorStops})`,
-          borderRadius: '5px',
-        }}
-      ></div>
-    </Center>
+    <div
+      className="gradient"
+      style={{
+        width: `100%`,
+        height: `100%`,
+        background: `${mode}-gradient(${
+          mode === 'linear' ? `${degree}deg` : 'circle'
+        }, ${gradientColorStops})`,
+        borderRadius: '5px',
+      }}
+    ></div>
   );
 };
 

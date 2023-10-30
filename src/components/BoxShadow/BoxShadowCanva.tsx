@@ -13,6 +13,7 @@ const BoxShadowCanva = ({ boxShadowOptions }: Props) => {
         style={{
           width: `200px`,
           height: `200px`,
+          borderRadius: '.5rem',
           backgroundColor: '#F5F5F5',
           boxShadow: `${
             inset ? 'inset' : ''
