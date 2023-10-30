@@ -1,5 +1,5 @@
 import { Center } from '@chakra-ui/react';
-import { BorderRadius } from '../../App';
+import { BorderRadius } from '../../interfaces/BorderRadius';
 
 interface Props {
   borderRadiusOptions: BorderRadius;

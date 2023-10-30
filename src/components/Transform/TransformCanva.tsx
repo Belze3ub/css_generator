@@ -1,5 +1,5 @@
 import { Center } from "@chakra-ui/react";
-import { Transform } from "../../App";
+import { Transform } from "../../interfaces/Transform";
 
 interface Props {
   transformOptions: Transform;

@@ -1,4 +1,4 @@
-import { Flexbox } from '../../App';
+import { Flexbox } from '../../interfaces/Flexbox';
 import CodeDisplay from '../CodeDisplay';
 
 interface Props {

@@ -1,6 +1,6 @@
 import { Flex, Text, Stack } from "@chakra-ui/react";
-import { Transform } from "../../App";
 import GenericChanger from "../GenericChanger";
+import { Transform } from "../../interfaces/Transform";
 
 interface Props {
   transformOptions: Transform;

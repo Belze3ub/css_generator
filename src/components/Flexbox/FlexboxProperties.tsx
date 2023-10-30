@@ -1,12 +1,5 @@
 import { Flex, Select, Stack, Text } from '@chakra-ui/react';
-import {
-  AlignContent,
-  AlignItems,
-  FlexDirection,
-  FlexWrap,
-  Flexbox,
-  JustifyContent,
-} from '../../App';
+import { Flexbox, FlexDirection, FlexWrap, JustifyContent, AlignContent, AlignItems } from '../../interfaces/Flexbox';
 
 interface Props {
   flexboxOptions: Flexbox;
@@ -49,7 +42,11 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
         justifyContent={'center'}
       >
         <Stack w={'full'}>
-          <Flex w={'100%'} justifyContent={'space-between'} alignItems={'center'}>
+          <Flex
+            w={'100%'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+          >
             <Text>display: </Text>
             <Select
               width={'40%'}
@@ -65,7 +62,11 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
               <option value={'inline-flex'}>inline-flex</option>
             </Select>
           </Flex>
-          <Flex w={'100%'} justifyContent={'space-between'} alignItems={'center'}>
+          <Flex
+            w={'100%'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+          >
             <Text>flex-direction: </Text>
             <Select
               width={'40%'}
@@ -77,13 +78,19 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
                 });
               }}
             >
-              <option value={'row'}>row</option>
+              <option value={'row'}>
+                row
+              </option>
               <option value={'column'}>column</option>
               <option value={'row-reverse'}>row-reverse</option>
               <option value={'column-reverse'}>column-reverse</option>
             </Select>
           </Flex>
-          <Flex w={'100%'} justifyContent={'space-between'} alignItems={'center'}>
+          <Flex
+            w={'100%'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+          >
             <Text>flex-wrap: </Text>
             <Select
               width={'40%'}
@@ -100,7 +107,11 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
               <option value={'wrap-reverse'}>wrap-reverse</option>
             </Select>
           </Flex>
-          <Flex w={'100%'} justifyContent={'space-between'} alignItems={'center'}>
+          <Flex
+            w={'100%'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+          >
             <Text>justify-content: </Text>
             <Select
               width={'40%'}
@@ -119,7 +130,11 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
               <option value={'space-around'}>space-around</option>
             </Select>
           </Flex>
-          <Flex w={'100%'} justifyContent={'space-between'} alignItems={'center'}>
+          <Flex
+            w={'100%'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+          >
             <Text>align-items: </Text>
             <Select
               width={'40%'}
@@ -138,7 +153,11 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
               <option value={'stretch'}>stretch</option>
             </Select>
           </Flex>
-          <Flex w={'100%'} justifyContent={'space-between'} alignItems={'center'}>
+          <Flex
+            w={'100%'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+          >
             <Text>align-content: </Text>
             <Select
               width={'40%'}
@@ -158,7 +177,7 @@ const FlexboxProperties = ({ flexboxOptions, setFlexboxOptions }: Props) => {
               <option value={'stretch'}>stretch</option>
             </Select>
           </Flex>
-          <Flex className='flex'>
+          <Flex className="flex">
             <button className="btn addRemove" onClick={addFlexItem}>
               Add Element
             </button>

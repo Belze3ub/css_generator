@@ -1,5 +1,4 @@
-import { Flexbox } from '../../App';
-
+import { Flexbox } from '../../interfaces/Flexbox';
 import './FlexboxCanva.css';
 
 interface Props {

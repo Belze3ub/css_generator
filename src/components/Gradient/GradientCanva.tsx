@@ -1,4 +1,4 @@
-import { Gradient } from '../../App';
+import { Gradient } from "../../interfaces/Gradient";
 
 interface Props {
   gradientOptions: Gradient;

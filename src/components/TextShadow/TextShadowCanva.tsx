@@ -1,5 +1,5 @@
 import { Center } from '@chakra-ui/react';
-import { TextShadow } from '../../App';
+import { TextShadow } from '../../interfaces/TextShadow';
 
 interface Props {
   textShadowOptions: TextShadow;

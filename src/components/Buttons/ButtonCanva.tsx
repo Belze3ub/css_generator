@@ -1,5 +1,5 @@
 import { Center } from '@chakra-ui/react';
-import { Button } from '../../App';
+import { Button } from '../../interfaces/Button';
 
 interface Props {
   buttonOptions: Button;

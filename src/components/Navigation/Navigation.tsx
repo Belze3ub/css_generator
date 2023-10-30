@@ -1,55 +1,48 @@
-import {Link} from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import { Card, Flex } from '@chakra-ui/react';
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-interface ButtonProps {
-  name: string;
-  endpoint: string;
-}
-
 const Navigation = () => {
-  const buttons = [
+  const endpoints = [
     { name: 'Box shadow', endpoint: '/' },
     { name: 'Text shadow', endpoint: '/text-shadow' },
     { name: 'Flexbox', endpoint: '/flexbox' },
     { name: 'Border radius', endpoint: '/border-radius' },
     { name: 'Gradient', endpoint: '/gradient' },
-    { name: 'Transition', endpoint: '/transition' },
     { name: 'Transform', endpoint: '/transform' },
-    { name: 'Background', endpoint: '/background' },
     { name: 'Button', endpoint: '/button' },
   ];
-  const [activeButton, setActiveButton] = useState<ButtonProps>(buttons[0]);
+
   return (
-    <>
-      <Card w={'full'} h={'full'} p={5} overflow={'auto'} className="options" mb={5}>
-        <Flex
+    <div className='main wrapper'>
+      <Card
+        p={5}
+        overflow={'auto'}
+        mb={5}
+        className='nav'
+      >
+        <div>
+          <Flex
           h={'full'}
           alignItems={'center'}
           justifyContent={'space-between'}
           gap={'1rem'}
         >
-          {buttons.map((button) => (
-            <Link key={button.name} to={button.endpoint}>
-              <button
-                key={button.name}
-                className={
-                  activeButton.endpoint === button.endpoint ? 'btn active' : 'btn'
-                }
-                onClick={() => {
-                  setActiveButton(button);
-                }}
-              >
-                {button.name}
-              </button>
-            </Link>
+          {endpoints.map((endpoint) => (
+            <NavLink
+              key={endpoint.name}
+              to={endpoint.endpoint}
+              className={({ isActive }) => (isActive ? 'btn active' : 'btn')}
+            >
+              <button key={endpoint.name}>{endpoint.name}</button>
+            </NavLink>
           ))}
         </Flex>
+        </div>
       </Card>
       <Outlet />
-    </>
+    </div>
   );
-}
+};
 
-export default Navigation
+export default Navigation;

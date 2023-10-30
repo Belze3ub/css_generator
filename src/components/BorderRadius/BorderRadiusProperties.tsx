@@ -1,7 +1,7 @@
 import { Flex, HStack, Stack, Text } from '@chakra-ui/react';
 import GenericChanger from '../GenericChanger';
-import { BorderRadius } from '../../App';
 import { useState } from 'react';
+import { BorderRadius } from '../../interfaces/BorderRadius';
 
 interface Props {
   borderRadiusOptions: BorderRadius;

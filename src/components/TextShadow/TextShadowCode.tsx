@@ -1,4 +1,4 @@
-import { TextShadow } from '../../App';
+import { TextShadow } from '../../interfaces/TextShadow';
 import CodeDisplay from '../CodeDisplay';
 
 interface Props {

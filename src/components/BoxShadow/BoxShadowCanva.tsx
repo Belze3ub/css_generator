@@ -1,5 +1,5 @@
 import { Center } from '@chakra-ui/react';
-import { BoxShadow } from '../../App';
+import { BoxShadow } from '../../interfaces/BoxShadow';
 
 interface Props {
   boxShadowOptions: BoxShadow;

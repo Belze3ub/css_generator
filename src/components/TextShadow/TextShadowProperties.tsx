@@ -1,6 +1,6 @@
 import { Flex, HStack, Input, Stack, Text } from '@chakra-ui/react';
 import GenericChanger from '../GenericChanger';
-import { TextShadow } from '../../App';
+import { TextShadow } from '../../interfaces/TextShadow';
 
 interface Props {
   textShadowOptions: TextShadow;

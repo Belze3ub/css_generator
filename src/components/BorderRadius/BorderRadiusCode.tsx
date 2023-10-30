@@ -1,4 +1,4 @@
-import { BorderRadius } from '../../App';
+import { BorderRadius } from '../../interfaces/BorderRadius';
 import CodeDisplay from '../CodeDisplay';
 
 interface Props {

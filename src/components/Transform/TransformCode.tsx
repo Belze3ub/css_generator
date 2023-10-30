@@ -1,4 +1,4 @@
-import { Transform } from '../../App';
+import { Transform } from '../../interfaces/Transform';
 import CodeDisplay from '../CodeDisplay';
 
 interface Props {

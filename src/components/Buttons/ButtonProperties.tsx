@@ -1,6 +1,6 @@
 import { Flex, HStack, Input, Select, Stack, Text } from '@chakra-ui/react';
-import { Button } from '../../App';
 import GenericChanger from '../GenericChanger';
+import { Button } from '../../interfaces/Button';
 
 interface Props {
   buttonOptions: Button;

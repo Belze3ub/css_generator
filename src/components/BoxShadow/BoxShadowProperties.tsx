@@ -1,6 +1,6 @@
 import { Flex, HStack, Stack, Switch, Text } from '@chakra-ui/react';
 import GenericChanger from '../GenericChanger';
-import { BoxShadow } from '../../App';
+import { BoxShadow } from '../../interfaces/BoxShadow';
 
 interface Props {
   boxShadowOptions: BoxShadow;

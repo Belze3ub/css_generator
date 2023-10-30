@@ -1,9 +1,9 @@
-import { Flex, HStack, Stack, Text } from '@chakra-ui/react';
+import { Flex, Stack, Text } from '@chakra-ui/react';
 import GenericChanger from '../GenericChanger';
-import { Gradient } from '../../App';
 import { useState } from 'react';
 
 import './GradientProperties.css';
+import { Gradient } from '../../interfaces/Gradient';
 
 interface Props {
   gradientOptions: Gradient;

@@ -1,4 +1,4 @@
-import { BoxShadow } from '../../App';
+import { BoxShadow } from '../../interfaces/BoxShadow';
 import CodeDisplay from '../CodeDisplay';
 
 interface Props {

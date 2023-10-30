@@ -1,4 +1,4 @@
-import { Gradient } from '../../App';
+import { Gradient } from '../../interfaces/Gradient';
 import CodeDisplay from '../CodeDisplay';
 
 interface Props {

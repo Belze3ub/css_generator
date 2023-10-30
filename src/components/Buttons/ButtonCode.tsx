@@ -1,8 +1,8 @@
-import { Button as ButtonType } from '../../App';
+import { Button } from '../../interfaces/Button';
 import CodeDisplay from '../CodeDisplay';
 
 interface Props {
-  buttonOptions: ButtonType;
+  buttonOptions: Button;
 }
 const ButtonCode = ({ buttonOptions }: Props) => {
   const {

@@ -11,9 +11,9 @@ const theme = extendTheme({
     global: {
       body: {
         bg: '#F5F5F5',
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 export default theme;
