@@ -10,6 +10,7 @@
   - [Property Selection](#property-selection)
   - [Customization](#customization)
   - [CSS Code Output](#css-code-output)
+- [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -136,13 +137,12 @@ The "CSS Properties Generator" application is a user-friendly web-based tool tha
    - Padding Y: Set the vertical padding of the button.
 3. View a live preview of the customized button.
 
-## Conclusion
-
-With the "CSS Properties Generator," you can effortlessly create and customize CSS code for various properties, making it easy to enhance the visual appeal of your web projects. Enjoy the simplicity and efficiency of this tool as you experiment with different styles and configurations.
-
-
 ### CSS Code Output
 
 1. As you customize the selected property, the generated CSS code will be automatically updated and displayed in a code box.
 2. Copy the CSS code to your clipboard using the provided copy button for easy integration into your web project.
 3. Paste the code into your HTML or CSS file to apply the custom styles to your desired elements.
+
+## Conclusion
+
+With the "CSS Properties Generator," you can effortlessly create and customize CSS code for various properties, making it easy to enhance the visual appeal of your web projects. Enjoy the simplicity and efficiency of this tool as you experiment with different styles and configurations.
